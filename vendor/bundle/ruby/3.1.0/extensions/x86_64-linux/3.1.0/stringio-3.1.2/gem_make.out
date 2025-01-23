@@ -1,0 +1,15 @@
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/stringio-3.1.2/ext/stringio
+/home/subhranshus/.rvm/rubies/ruby-3.1.0/bin/ruby -I /home/subhranshus/.rvm/rubies/ruby-3.1.0/lib/ruby/3.1.0 -r ./siteconf20250117-6909-h0mrv.rb extconf.rb
+creating Makefile
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= clean
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\=
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20250117-6909-lmjzzu

@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag "users.css" %>
+
+<h1 align="center" class="my-4">Registered User List</h1>
+
+<table align="center" class="shadow">
+    <tr class="border-bottom">
+        <th>
+            Seriel No
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    <% @users.each_with_index do |user,i| %>
+        <tr>
+            <div class="row">
+                <td>
+                    <%= i+1 %>
+                </td>
+                <td>
+                    <%= user.first_name %>
+                </td>
+                <td>
+                    <%= user.last_name %>
+                </td>
+                <td><%= user.email %></td>
+                <td><%= user.roles.map{ |role| role.title}.join(",") %></td>
+                
+                    
+                    
+                    
+                    
+                <td>
+                    <%= link_to 'Show', user_path(user),class:"btn-primary" %>
+                    <%= link_to 'Edit', edit_user_path(user),class:"btn-warning" %>
+                    <%= link_to 'Delete', user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure to delete the user?' },class:"btn-danger" %>
+                </td>   
+            </div>
+
+        </tr>
+    <% end %>
+    
+</table>
+
+<div align="center" class="mt-4">
+    <%= link_to 'Add Another', new_user_path,class:"btn btn-outline-success" %>
+</div>

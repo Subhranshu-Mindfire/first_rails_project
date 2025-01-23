@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag "new_user.css" %>
+
+<div class="back-btn">
+    <%= link_to '<-Back', users_path %>
+</div>
+
+<div class="bg-light h-100">
+    <div class="container ">
+        <div class="form-box shadow">
+            <%= form_for @user,:html => {:class => 'form-control d-flex justify-center'}  do |f| %>
+
+            <h1>Updation Form</h1>
+
+                <div>
+                    <%= f.text_field :first_name ,placeholder:" First Name", class:"form-control" %>
+                </div>
+                <div>
+                    <%= f.text_field :last_name ,placeholder:" Last Name", class:"form-control"  %>
+                </div>
+                <div>
+                    <%= f.text_field :email ,placeholder:" Email", class:"form-control"  %>
+                </div>
+                <div class="mt-3">
+                        <% @roles.each_with_index do |role,i| %>
+                            <%= f.check_box :roles, {multiple: true,checked: @user.roles.map{|rol| rol.id}.include?(role.id)}, role.id, nil %>
+                            <%= f.label :roles, role.title %>
+                            
+                        <% end %>
+                </div>
+            
+                <div>
+                <%= f.submit "Update", class:"btn btn-outline-primary" %>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+</div>
