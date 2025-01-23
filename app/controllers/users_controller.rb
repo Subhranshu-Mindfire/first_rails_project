@@ -18,21 +18,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        
-        # binding.pry
-        
         @user = User.new(user_params)
+        roles = role_params[:roles]
+        
+        if roles != nil
+          @user.roles = Role.where(id:roles.map{|role| role.to_i})
+        end
 
         if @user.save
-            
-            # binding.pry
-            
-            roles = role_params[:roles]
-            
-            roles.each do |role|
-                UserRole.create(user_id:@user.id, role_id:role)
-            end
-            
             redirect_to users_path, notice: "User Created Successfully"
         else
             flash.now[:alert] = @user.errors.full_messages.to_sentence
@@ -44,7 +37,6 @@ class UsersController < ApplicationController
     def edit
         @roles = Role.all
         begin
-            # @user = find_user
             user
         rescue ActiveRecord::RecordNotFound => e
             redirect_to '/404'
@@ -56,31 +48,25 @@ class UsersController < ApplicationController
           if user.update(user_params)
             roles = role_params[:roles]
             
-            roles.each do |role|
-              
-              # binding.pry
-              
-              if not(user.roles.map{ |rol| rol.id}.include?(role.to_i))
-                UserRole.create(user_id:@user.id, role_id:role)
+            if roles != nil
+              roles.each do |role|
+            
+                if not(user.roles.map{ |rol| rol.id}.include?(role.to_i))
+                  UserRole.create(user_id:@user.id, role_id:role)
+                end
+  
+                (user.roles.map{ |rol| rol.id} - roles.map{|ro| ro.to_i}).each do |r|
+                  UserRole.find_by(user_id:user.id, role_id:r).destroy
+                end
+  
               end
-
-              
-              # binding.pry
-              
-              (user.roles.map{ |rol| rol.id} - roles.map{|ro| ro.to_i}).each do |r|
-                UserRole.find_by(user_id:user.id, role_id:r).destroy
-              end
-              
-                 
-              
-
             end
             redirect_to users_path,notice:"User Updated Successfully"
             
           else
-              flash.now[:alert] = @user.errors.full_messages.to_sentence
-                # render turbo_stream: [turbo_stream.update("flash", partial: "shared/flash")]
-              render :new, status: :unprocessable_entity
+            flash.now[:alert] = @user.errors.full_messages.to_sentence
+              # render turbo_stream: [turbo_stream.update("flash", partial: "shared/flash")]
+            render :new, status: :unprocessable_entity
           end
         rescue ActiveRecord::RecordNotFound => e
           redirect_to '/404'
@@ -89,8 +75,9 @@ class UsersController < ApplicationController
 
     def destroy
       begin
-        # @user = find_user
-        # user
+        user.roles.map{ |role| role.id }.each do |ro|
+            UserRole.find_by(user_id:user.id,role_id:ro).destroy() 
+        end
         user.destroy()
         redirect_to users_path, notice:"User Deleted Successfully"
       rescue ActiveRecord::RecordNotFound => e
@@ -110,7 +97,6 @@ class UsersController < ApplicationController
     def user
         @user ||= User.find(params[:id])
     end
-
-    
-end
+ 
+  end
 
