@@ -1,0 +1,16 @@
+<div id="flash" class="flash d-flex mt-2 me-4 flex-row-reverse">
+    <% if notice.present? %>
+        <div class="alert alert-info alert-dismissible">
+            <%= notice %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+        </div>
+    <% end %>
+    <% if alert.present? %>
+        <div class="alert alert-warning alert-dismissible position-absolute">
+            <strong><%= alert %></strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+    <% end %>
+</div>

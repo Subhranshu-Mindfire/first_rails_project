@@ -1,0 +1,16 @@
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+/home/subhranshus/.rvm/rubies/ruby-3.1.0/bin/ruby -I /home/subhranshus/.rvm/rubies/ruby-3.1.0/lib/ruby/3.1.0 -r ./siteconf20250117-6909-9g5ori.rb extconf.rb
+creating Makefile
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= clean
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\=
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20250117-6909-80he5y/debug

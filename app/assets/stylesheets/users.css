@@ -1,0 +1,102 @@
+.d-flex{
+    display: flex;
+}
+
+table{
+    background-color: rgb(233, 233, 233);
+    border-radius: 20px;
+}
+
+a{
+    text-decoration: none !important; 
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+    border:1px solid black
+}
+
+
+.btn-primary{
+    background-color: white;
+    color: blue;
+    border-color: blue;
+}
+
+.btn-primary:hover{
+    background-color:blue;
+    color: white;
+    cursor:pointer;  
+}
+
+.btn-danger{
+    background-color: white;
+    color: red;
+    border-color: red;
+}
+
+.btn-danger:hover{
+    background-color:red ;
+    color:white ;
+    cursor:pointer
+}
+.btn-warning{
+    background-color: white;
+    color: gold;
+    border-color: gold;
+}
+
+.btn-warning:hover{
+    background-color: gold;
+    color:white ;
+    cursor:pointer
+}
+
+.btn-secondary{
+    background-color: gray;
+    color: white;
+    border-color: gray;
+}
+
+.btn-secondary:hover{
+    background-color: white;
+    color: gray;
+}
+th{
+    text-align: center;
+}
+
+td{
+    padding: 35px;
+}
+
+table{
+    font-size: 20px;
+    padding: 20px;
+}
+
+.success{
+    color: green;
+}
+
+.mt-2{
+    margin-top: 20px;
+}
+
+.back-btn{
+    margin: 20px;
+}
+
+.h-100vh{
+    height: 80vh;
+}
+
+.show{
+    background-color: rgb(225, 225, 225);
+    padding: 30px;
+    height: 10vh;
+}
+
+.show th{
+    padding-left: 20px;
+}

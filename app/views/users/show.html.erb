@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag "users.css" %>
+
+<div class="back-btn">
+    <%= link_to '<-Back', users_path %>
+</div>
+
+<div class="d-flex h-100vh align-items-center
+">
+    <table align="center" class="rounded show">
+    <tr>
+        <th class="text-start">ID</th>
+        <td><%=@user.id%></td>
+    </tr>
+    <tr>
+        <th class="text-start">First Name</th>
+        <td><%=@user.first_name%></td>
+    </tr>
+    <tr>
+        <th class="text-start">Last Name</th>
+        <td><%=@user.last_name%></td>
+    </tr>
+    <tr>
+        <th class="text-start">Email</th>
+        <td><%=@user.email%></td>
+    </tr>
+    <tr>
+        <th class="text-start">Roles</th>
+        <td><%= @user.roles.map{ |role| role.title}.join(",") %></td>
+    </tr>
+    <tr>
+        <th class="text-start">Created At</th>
+        <td><%=@user.created_at%></td>
+    </tr>
+    <tr>
+        <th class="text-start">Updated At</th>
+        <td><%=@user.updated_at%></td>
+    </tr>
+    
+</table>
+</div>

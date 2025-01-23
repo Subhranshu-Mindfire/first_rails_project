@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "new_user.css" %>
+
+<div class="back-btn">
+    <%= link_to '<-Back', roles_path %>
+</div>
+
+<div class="bg-light h-100">
+    <div class="container ">
+        <div class="form-box shadow">
+            <%= form_for @role,:html => {:class => 'form-control d-flex justify-center'}  do |f| %>
+
+            <h1>Updation Form</h1>
+
+                <div>
+                    <%= f.text_field :title ,placeholder:" Title", class:"form-control" %>
+                </div>
+                <div>
+                    <%= f.text_field :description ,placeholder:" Description", class:"form-control"  %>
+                </div>
+                <div>
+                <%= f.submit "Update", class:"btn btn-outline-primary" %>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+</div>
