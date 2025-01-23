@@ -1,0 +1,24 @@
+<div class="d-flex input-fields">
+    <div>
+        <%= f.text_field :first_name ,placeholder:" First Name", class:"form-control"  %>
+        <% @user.errors.full_messages_for(:first_name).each do |error_message| %>
+            <p class="text-danger m-0 p-0"> *<%= error_message %></p>
+        <% end %>
+    </div>
+    <div>
+        <%= f.text_field :last_name ,placeholder:" Last Name", class:"form-control"  %>
+    </div>
+    <div>
+        <%= f.text_field :email ,placeholder:" Email", class:"form-control"  %>
+        <% @user.errors.full_messages_for(:email).each do |error_message| %>
+            <p class="text-danger m-0 p-0"> *<%= error_message %></p>
+        <% end %>
+    </div>
+
+    <div class="mt-3"> 
+        <% Role.all.each do |role| %>
+            <%= f.check_box :roles, {multiple: true,checked: @user.roles.map{|rol| rol.id}.include?(role.id)}, role.id, nil %>
+            <%= f.label :roles, role.title %>  
+        <% end %>
+    </div>
+</div>

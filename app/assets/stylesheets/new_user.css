@@ -32,3 +32,7 @@ form{
 .back-btn{
     margin: 20px;
 }
+
+.field_with_errors{
+    display: inline;
+}

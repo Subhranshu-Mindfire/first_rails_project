@@ -8,25 +8,15 @@
 <div class="bg-light">
     <div class="container">
         <div class="form-box shadow-lg">
-            <%= form_for @role, :html => {:class => 'form-control d-flex justify-center'} do |f| %>
+            <%= form_for @role, html: { class: 'form-control d-flex justify-center' } do |f| %>
 
                 <h1 class="text-dark">Role Addition Form</h1>
                 
-                <div class="d-flex input-fields">
-                    <div>
-                        <%= f.text_field :title ,placeholder:" Title", class:"form-control"  %>
-                        <% @role.errors.full_messages_for(:title).each do |error_message| %>
-                            <p class="text-danger m-0 p-0"> *<%= error_message %></p>
-                        <% end %>
-                    </div>
-                    <div>
-                        <%= f.text_field :description ,placeholder:" Description", class:"form-control"  %>
-                    </div>
-                </div>
+                 <%= render "shared/form" %>
             <div>
                 <%= f.submit "Add", class:"btn btn-outline-primary" %>
             </div>
             <% end %>
         </div>
     </div>
-</role
+</div>
