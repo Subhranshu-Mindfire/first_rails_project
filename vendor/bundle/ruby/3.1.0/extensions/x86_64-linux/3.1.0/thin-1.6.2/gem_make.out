@@ -1,0 +1,50 @@
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/thin-1.6.2/ext/thin_parser
+/home/subhranshus/.rvm/rubies/ruby-3.1.0/bin/ruby -I /home/subhranshus/.rvm/rubies/ruby-3.1.0/lib/ruby/3.1.0 -r ./siteconf20250124-34391-4kxhmo.rb extconf.rb
+checking for main() in -lc... yes
+creating Makefile
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/thin-1.6.2/ext/thin_parser
+make DESTDIR\= clean
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/thin-1.6.2/ext/thin_parser
+make DESTDIR\=
+compiling parser.c
+parser.c:31:18: warning: ‘http_parser_en_main’ defined but not used [-Wunused-const-variable=]
+   31 | static const int http_parser_en_main = 1;
+      |                  ^~~~~~~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling thin.c
+thin.c: In function ‘Thin_HttpParser_alloc’:
+thin.c:242:3: warning: implicit declaration of function ‘thin_http_parser_init’; did you mean ‘http_parser_init’? [-Wimplicit-function-declaration]
+  242 |   thin_http_parser_init(hp);
+      |   ^~~~~~~~~~~~~~~~~~~~~
+      |   http_parser_init
+thin.c: In function ‘Thin_HttpParser_finish’:
+thin.c:294:3: warning: implicit declaration of function ‘thin_http_parser_finish’; did you mean ‘Thin_HttpParser_finish’? [-Wimplicit-function-declaration]
+  294 |   thin_http_parser_finish(http);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+      |   Thin_HttpParser_finish
+thin.c:296:10: warning: implicit declaration of function ‘thin_http_parser_is_finished’; did you mean ‘http_parser_is_finished’? [-Wimplicit-function-declaration]
+  296 |   return thin_http_parser_is_finished(http) ? Qtrue : Qfalse;
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |          http_parser_is_finished
+thin.c: In function ‘Thin_HttpParser_execute’:
+thin.c:334:5: warning: implicit declaration of function ‘thin_http_parser_execute’; did you mean ‘Thin_HttpParser_execute’? [-Wimplicit-function-declaration]
+  334 |     thin_http_parser_execute(http, dptr, dlen, from);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+      |     Thin_HttpParser_execute
+thin.c:338:8: warning: implicit declaration of function ‘thin_http_parser_has_error’; did you mean ‘http_parser_has_error’? [-Wimplicit-function-declaration]
+  338 |     if(thin_http_parser_has_error(http)) {
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        http_parser_has_error
+thin.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+linking shared-object thin_parser.so
+
+current directory: /home/subhranshus/Projects/Ruby/Demo/Assignments/registration_portal/vendor/bundle/ruby/3.1.0/gems/thin-1.6.2/ext/thin_parser
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 thin_parser.so ./.gem.20250124-34391-1qhph0
