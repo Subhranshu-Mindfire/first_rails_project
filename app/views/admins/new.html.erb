@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "new_user.css" %>
+
+<div class="back-btn">
+    <%= link_to '<-Back', roles_path %>
+</div>
+
+
+<div class="bg-light">
+    <div class="container">
+        <div class="form-box shadow-lg">
+            <%= form_for @admin, html: { class: 'form-control d-flex justify-center' } do |f| %>
+
+                <h1 class="text-dark">Sign Up Form</h1>
+                
+               <div>
+                    <div>
+                    <%= f.text_field :email ,placeholder:" Email", class:"form-control my-3"  %>
+                </div>
+                <div>
+                    <%= f.password_field :password ,placeholder:" Password", class:"form-control my-3"  %>
+                </div>
+                <div>
+                    <%= f.password_field :password ,placeholder:" Confirm Password", class:"form-control my-3"  %>
+                </div>
+               </div>
+               
+
+            <div>
+                <%= f.submit "Sign In", class:"btn btn-outline-primary" %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -7,16 +7,6 @@ table{
     border-radius: 20px;
 }
 
-a{
-    text-decoration: none !important; 
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bolder;
-    cursor: pointer;
-    border:1px solid black
-}
-
-
 .btn-primary{
     background-color: white;
     color: blue;
@@ -91,11 +81,7 @@ table{
     height: 80vh;
 }
 
-.show{
-    background-color: rgb(225, 225, 225);
-    padding: 30px;
-    height: 10vh;
-}
+
 
 .show th{
     padding-left: 20px;

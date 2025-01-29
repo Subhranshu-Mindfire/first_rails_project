@@ -1,0 +1,8 @@
+<h1>Welcome to the Registration Portal <%= @user[:first_name] %></h1>
+<p>
+  Please confirm the account by clicking this <%= link_to 'link', edit_confirmation_url(@user) %>
+</p>
+<p>
+  Please confirm the account by clicking this <%= link_to 'link', confirm_url(@user), data:{turbo_method: :patch} %>
+</p>
+<p>Thanks for joining and have a great day!</p>
