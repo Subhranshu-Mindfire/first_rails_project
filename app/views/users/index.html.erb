@@ -37,16 +37,11 @@
                     <%= user.last_name %>
                 </td>
                 <td><%= user.email %></td>
-                <td><%= user.roles.map{ |role| role.title}.join(",") %></td>
-                
-                    
-                    
-                    
-                    
+                <td><%= user.roles.map{ |role| role.title}.join(",") %></td> 
                 <td>
-                    <%= link_to 'Show', user_path(user),class:"btn-primary" %>
-                    <%= link_to 'Edit', edit_user_path(user),class:"btn-warning" %>
-                    <%= link_to 'Delete', user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure to delete the user?' },class:"btn-danger" %>
+                    <%= link_to 'Show', user_path(user),class:"btn btn-outline-primary btn-lg" %>
+                    <%= link_to 'Edit', edit_user_path(user),class:"btn btn-outline-dark btn-lg" %>
+                    <%= link_to 'Delete', user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure to delete the user?' },class:"btn btn-outline-danger btn-lg" %>
                 </td>   
             </div>
 

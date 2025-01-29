@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_22_071023) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_28_092307) do
+  create_table "admins", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_confirmed", default: false, null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -33,6 +46,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_22_071023) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.boolean "is_confirmed", default: false, null: false
   end
 
   add_foreign_key "user_roles", "roles"

@@ -12,7 +12,12 @@
 
                 <h1 class="text-dark">Role Addition Form</h1>
                 
-                 <%= render "shared/form" %>
+                 <div>
+                    <%= f.text_field :title ,placeholder:" Title", class:"form-control" %>
+                </div>
+                <div>
+                    <%= f.text_field :description ,placeholder:" Description", class:"form-control"  %>
+                </div>
             <div>
                 <%= f.submit "Add", class:"btn btn-outline-primary" %>
             </div>

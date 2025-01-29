@@ -1,14 +1,13 @@
 class User < ApplicationRecord
 
-    
-
+    has_secure_password
     has_many :user_roles, dependent: :destroy
     has_many :roles, through: :user_roles
 
     before_destroy :check_if_user_is_owner
 
     validates :first_name, presence: true
-    validates :email, presence: true
+    validates :email, presence: true, uniqueness: true
 
     validate :must_have_role
 
@@ -23,7 +22,7 @@ class User < ApplicationRecord
       is_owner = roles.exists?(id: owner_role.id)
 
       
-      binding.pry
+    #   binding.pry
       
       if is_owner
           errors.add(:roles, "Owner Can not be deleted")

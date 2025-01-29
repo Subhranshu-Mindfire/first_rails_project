@@ -1,4 +1,7 @@
 class RolesController < ApplicationController
+
+    before_action :require_login_and_admin_access 
+
     def index
         @roles = Role.all
     end
@@ -26,7 +29,7 @@ class RolesController < ApplicationController
         end
     end
 
-    def update
+    def edit
         begin
             @role = find_role
           if @role.update(role_params)
@@ -71,5 +74,13 @@ class RolesController < ApplicationController
 
     def find_role
         Role.find(params[:id])
+    end
+
+    def require_login_and_admin_access
+        if !logged_in?
+            redirect_to login_path, notice: "Please Sign in to Continue"
+        elsif !is_admin?(current_user)
+            redirect_to home_users_path, notice: "Action Restricted"
+        end
     end
 end

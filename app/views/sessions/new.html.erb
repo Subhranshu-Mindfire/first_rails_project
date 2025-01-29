@@ -1,0 +1,17 @@
+
+<div class="bg-light" style="height:100vh;">
+  <div class="container">
+    <div class="h-50 w-50 shadow-lg bg-white">
+			<h1 class="text-center pt-3">User Login</h1>
+			<%= form_tag("/login", method: "post", class: "h-75") do %>
+				<div class="d-flex flex-column h-25 justify-content-between">
+					<%= text_field_tag(:email,"", placeholder: "Email", class:"form-control mb-4" ) %>
+					<%= password_field_tag(:password,"", placeholder: "Password", class:"form-control") %>
+				</div>
+				<div>
+					<%= submit_tag("Login",class: "btn btn-outline-success") %>
+				</div>
+			<% end %>   
+		</div>
+	</div>
+</div>

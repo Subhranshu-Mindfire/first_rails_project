@@ -1,15 +1,29 @@
 class UsersController < ApplicationController
 
+  before_action :check_admin, only: [:index, :destroy]
+
     def index
-        @users = User.all
+      if logged_in?
+        @users = User.all if logged_in?
+      else
+        redirect_to login_path, notice: "Please Log in to continue"
+      end
     end
 
     def show
-        begin
-            user
-        rescue ActiveRecord::RecordNotFound => e
-            redirect_to '/404'
+      if logged_in?
+        if current_user[:id] != params[:id].to_i
+          redirect_to home_users_path, notice: "Action Restricted"
+        else
+          begin
+              user
+          rescue ActiveRecord::RecordNotFound => e
+              redirect_to '/404'
+          end
         end
+      else
+        redirect_to login_path, notice: "Please Log in to continue"
+      end
     end
 
     def new
@@ -28,8 +42,10 @@ class UsersController < ApplicationController
         end
 
         if @user.save
-          UserMailer.welcome_email(@user).deliver_now
-          redirect_to users_path, notice: "User Created Successfully"
+          # UserMailer.welcome_email(@user).deliver_now
+          # redirect_to users_path, notice: "User Created Successfully"
+          UserMailer.confirmation_email(@user).deliver_now
+          redirect_to new_user_path, notice: "Confirmation mail has been sent through the mail."
         else
             flash.now[:alert] = @user.errors.full_messages.to_sentence
             # render turbo_stream: [turbo_stream.update("flash", partial: "shared/flash")]
@@ -38,12 +54,23 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @roles = Role.all
-        begin
-            user
-        rescue ActiveRecord::RecordNotFound => e
-            redirect_to '/404'
+      
+      # binding.pry
+      
+      if logged_in?
+        if current_user[:id] != params[:id].to_i
+          redirect_to home_users_path, notice: "Action Restricted"
+        else
+          @roles = Role.all
+          begin
+              user
+          rescue ActiveRecord::RecordNotFound => e
+              redirect_to '/404'
+          end
         end
+      else
+        redirect_to login_path, notice: "Please Log in to continue"
+      end
     end
 
     def update
@@ -87,25 +114,35 @@ class UsersController < ApplicationController
     end
 
     def destroy      
-      begin
+      if logged_in?
+        begin
 
-        # owner_role = Role.where(title: "Owner").first
-        # is_owner = user.roles.where(roles: {id: owner_role.id}).present?
-  
-        # if is_owner
-        #   redirect_to users_path, alert:"Owner Can not be deleted"
-        # else
-          # user.destroy
-          redirect_to users_path, notice:"Testing"     
-        # end   
-      rescue ActiveRecord::RecordNotFound => e
-          redirect_to '/404'
+          # owner_role = Role.where(title: "Owner").first
+          # is_owner = user.roles.where(roles: {id: owner_role.id}).present?
+    
+          # if is_owner
+          #   redirect_to users_path, alert:"Owner Can not be deleted"
+          # else
+            user.destroy
+            redirect_to users_path, notice:"Successfully Deleted"     
+          # end   
+        rescue ActiveRecord::RecordNotFound => e
+            redirect_to '/404'
+        end
+      else
+        redirect_to login_path, notice: "Please Log in to continue"
+      end
+    end
+
+    def home
+      if !logged_in?
+        redirect_to login_path, notice: "Pleae Log in to continue"
       end
     end
     
     private
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :email)
+        params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 
     def role_params
@@ -114,10 +151,12 @@ class UsersController < ApplicationController
 
     def user
         @user ||= User.find(params[:id])
+    end 
+
+    def check_admin
+      if !is_admin?(current_user)
+        redirect_to home_users_path, notice: "Action Restricted"
+      end
     end
-
-    
-
- 
-  end
+end
 

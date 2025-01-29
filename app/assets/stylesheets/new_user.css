@@ -9,7 +9,7 @@
 .form-box{
     /* color: ; */
     width: 30vw;
-    height: 40vh;
+    height: 50vh;
     /* background-color:rgb(172, 172, 172); */
     border-radius: 20px;
 }
@@ -24,13 +24,14 @@ form{
 }
 
 .input-fields{
-    height: 50%;
+    height: 70%;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .back-btn{
     margin: 20px;
+    display: none;
 }
 
 .field_with_errors{
