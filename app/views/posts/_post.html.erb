@@ -1,2 +1,51 @@
-<div id="<%= dom_id post %>">
-</div>
+<% if flag or post.is_public %>
+  <div class="w-50 my-2 border border-2 p-3">
+    <% unless post.is_public %>
+      <div class="my-3"><i >--Private</i></div>
+    <% end %>
+    <div class="d-flex justify-content-between w-full">
+      
+      <div class="my-1">
+        <%= post.user.first_name %>
+      </div>
+      <div><%= post.created_at.strftime("%d-%m-%Y %H:%M")%></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <%= post.title %>
+      </div>
+      <div class="card-body">
+        <!-- <h5 class="card-title">Special title treatment</h5> -->
+        <p class="card-text"><%= post.content %></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="my-3">
+        All Comments
+      </div>
+      <div>
+        <%= form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
+         <div class="d-flex">
+        <%= f.text_field :content, placeholder: "Add Comment", class:"form-control" %>
+        <%= f.submit 'Comment', class: "ms-3 mt-1 btn btn-sm btn-outline-dark " %>
+      </div>
+    <% end %>
+      </div>
+    </div>
+    <div class="comments d-flex mb-3 flex-column">
+      
+      <% post.comments.each do |comment| %>
+        <p class="d-flex flex-row">
+          <div>
+            --<%= comment.user.first_name %>
+          </div>
+          <div class="mt-1 ms-2">
+            "<%= comment.content %>"
+          </div>
+        </p>
+      <% end %> 
+    </div>
+    
+    
+  </div>
+<% end %>

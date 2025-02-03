@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-light justify-content-between py-2">
-  <span class="navbar-brand ms-4"><%= link_to 'Registration Portal', root_path, class:"text-decoration-none text-secondary" %></span>
+  <span class="navbar-brand ms-4"><%= link_to 'Registration Portal', posts_path, class:"text-decoration-none text-secondary" %></span>
   
   <div class="d-flex align-items-center">
 
@@ -7,6 +7,11 @@
       <span class="px-3 fs-5 ">
          Welcome, <%= current_user[:first_name] %>
       </span>
+      <button type="button" class="btn btn-outline-secondary py-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Post
+      </button>
+
+     <%# = link_to 'text', new_post_path, id: 'login',data: {toggle: 'modal', target: '#exampleModal'} %>
      
       <% if is_admin?(current_user) %>
         <div class="dropdown mx-2">
@@ -26,6 +31,7 @@
           My Profile
         </button>
         <ul class="dropdown-menu">
+          <li><%= link_to 'My Posts', posts_user_path(current_user), class: "dropdown-item" %></li>
           <li><%= link_to 'Profile', user_path(current_user), class: "dropdown-item"%></li>
           <li><%= link_to 'Edit Profile', edit_user_path(current_user), class: "dropdown-item"%></li>
           <li><%= link_to 'Logout', logout_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure logout?' }, class: "dropdown-item" %></li>
@@ -39,3 +45,48 @@
     
   </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Post</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- <form> -->
+          <!-- <div class="mb-3"> -->
+            <!-- <label for="recipient-name" class="col-form-label">Title:</label> -->
+            <!-- <input type="text" class="form-control" id="recipient-name"> -->
+          <!-- </div> -->
+          <!-- <div class="mb-3"> -->
+            <!-- <label for="message-text" class="col-form-label">Content:</label> -->
+            <!-- <textarea class="form-control" id="message-text"></textarea> -->
+          <!-- </div> -->
+        <!-- </form> -->
+        <%= form_for $post do |f| %>
+          <%= f.text_field :title ,placeholder:" Title", class:"form-control my-3"  %>
+          <%= f.text_area :content,placeholder:" Content", class:"form-control" %>
+          <div class="d-flex my-3 justify-content-evenly w-full" style="width: 400px;">
+            <div>
+              <%= f.label :is_public, 'Public Post?' %>
+            <%= f.radio_button :is_public,true %>
+            </div>
+            <div><%= f.label :is_public, 'Private Post?' %>
+            <%= f.radio_button :is_public,false %>
+            </div>
+            <%# = f.label :is_public, 'is Public ?' %>
+            <%# = f.check_box :is_public %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= f.submit "Add", class:"btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
