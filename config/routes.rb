@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :posts
   resources :companies, path: :buisness
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,13 +13,18 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
+  resources :posts do
+    resources :comments
+  end
+
+
   resources :users do
+    member do
+      get '/posts', to: 'posts#user_posts'
+    end
     collection do
-      # get '/home', to: 'users#home'
       get "home"
       get "welcome"
-      # get "new", as: "/signup"
-      
     end
   end
 

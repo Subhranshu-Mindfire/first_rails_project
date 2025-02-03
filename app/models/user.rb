@@ -3,6 +3,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :user_roles, dependent: :destroy
     has_many :roles, through: :user_roles
+    has_many :posts, dependent: :destroy
+    has_many :comments, dependent: :destroy
 
     before_destroy :check_if_user_is_owner
 
@@ -20,10 +22,6 @@ class User < ApplicationRecord
     def check_if_user_is_owner
       owner_role = Role.find_by(title: "Owner")
       is_owner = roles.exists?(id: owner_role.id)
-
-      
-    #   binding.pry
-      
       if is_owner
           errors.add(:roles, "Owner Can not be deleted")
       end

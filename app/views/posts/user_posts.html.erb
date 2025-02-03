@@ -1,0 +1,22 @@
+<h1 class="text-center my-4">My Posts</h1>
+
+<div id="posts" class="container flex-column h-auto">
+  <% @posts.each do |post| %>
+    <%= render 'post', post: post,flag: true %>
+    
+  <% end %>
+  <div class="d-flex justify-content-center mt-5">
+  <% if params[:page].to_i > 1 %>
+   <div class=""><%= link_to "Previous", posts_user_path(current_user,page: params[:page].to_i - 1), class:"btn btn-outline-secondary mx-4" %></div> 
+  <% end %>
+  
+  <% if @posts.size == @per_page %>
+    <%if !params[:page]%>
+      <div class=""><%= link_to "Next", posts_user_path(current_user,page: 2), class:"btn btn-outline-secondary" %></div>
+    <%else%>
+      <div class=""><%= link_to "Next", posts_user_path(current_user,page: params[:page].to_i + 1), class:"btn btn-outline-secondary" %></div>
+    <%end%>
+  <% end %>
+  
+</div>
+</div>

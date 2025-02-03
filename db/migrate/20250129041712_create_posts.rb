@@ -8,7 +8,6 @@ class CreatePosts < ActiveRecord::Migration[7.2]
       
 
       t.references :user, null: false, foreign_key: true
-      #Ex:- :null => false
       t.timestamps
     end
   end

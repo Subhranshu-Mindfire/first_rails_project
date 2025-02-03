@@ -1,11 +1,19 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+  # before_action :check_loggedin
 
   helper_method :current_user, :logged_in?, :is_admin?
 
+  $post = Post.new
+  $comment = Comment.new
+
   def logged_in?
     current_user
+  end
+
+  def check_loggedin
+    redirect_to login_path unless logged_in?
   end
 
   def current_user
@@ -13,7 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?(current_user)
-    # if current_user.roles.role_ids
     admin = Role.find_by(title: "Admin")
     if current_user and current_user.roles.include?(admin)
       return true
